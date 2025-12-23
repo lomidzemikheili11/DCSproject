@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCS Register</title>
+    <link rel="stylesheet" href="registration.css">
+</head>
+
+<body>
+
+    <script src="script.js"></script>
+    
+    <header>
+        <a href="index.html"><img src="images-removebg-preview.png" alt="logo"></a>
+        <div class="header">
+            <nav>
+                <a href="registration.html"><img src="lang-en.png" alt="UK-flag"></a>
+                <a href="registrationRU.html"><img src="lang-ru.png" alt="RU-flag"></a>
+                <a href="registrationDE.html"><img src="lang-de.png" alt="DE-flag"></a>
+                <a href="registrationFR.html"><img src="lang-fr.png" alt="FR-flag"></a>
+                <a href="registrationIT.html"><img src="lang-it.png" alt="IT-flag"></a>
+            </nav>
+        </div>
+    </header>
+    <div class="search">
+          <div class="hamburger">
+                <input class="checkbox" type="checkbox" id="burgerToggle"/>
+                <svg fill="none" viewBox="0 0 50 50" height="50" width="50">
+                    <path class="lineTop line" stroke-linecap="round" stroke-width="4" stroke="black" d="M6 11L44 11">
+                    </path>
+                    <path stroke-linecap="round" stroke-width="4" stroke="black" d="M6 24H43" class="lineMid line">
+                    </path>
+                    <path stroke-linecap="round" stroke-width="4" stroke="black" d="M6 37H43" class="lineBottom line">
+                    </path>
+                </svg>
+            </div>
+        <div class="HOME">
+            <a href="index.html">Home</a>
+            <a href="Download.html">Download</a>
+            <a href="support.html">Support</a>
+        </div>
+    </div>
+
+    <div class="register-wrapper">
+        <form class="register-box">
+            <h2>Create Account</h2>
+            <div class="name">
+                <div class="input-field">
+                    <input type="text" required>
+                    <label>First Name</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="text" required>
+                    <label>Last Name</label>
+                </div>
+            </div>
+
+            <div class="input-field">
+                <input type="email" required>
+                <label>Email</label>
+            </div>
+
+            <div class="input-field">
+                <input type="text" required minlength="3">
+                <label>Login (min. 3 char.)</label>
+            </div>
+
+            <div class="password">
+                <div class="input-field">
+                    <input type="password" required minlength="8">
+                    <label>Password *</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="password" required minlength="8">
+                    <label>Confirm Password *</label>
+                </div>
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
