@@ -10,8 +10,6 @@
 
 <body>
 
-    <script src="script.js"></script>
-
     <header>
         <a href="de.html"><img src="images-removebg-preview.png" alt="Logo"></a>
         <div class="header">
@@ -109,7 +107,7 @@
                         Ihnen ermöglichen, hochkomplexe Missionen zu planen und durchzuführen. DCS World ist durch zusätzliche Module
                         sowie von Nutzern erstellte Add-ons und Mods stark erweiterbar, die Sie auf unserer Seite kaufen und herunterladen können.</p>
                 </div>
-                <button>Herunterladen</button>
+                <button  onclick="downloadFile()">Herunterladen</button>
             </div>
             <div class="div2">
                 <h3>DCS World 2.9 Dedizierter Server (modularer Installer)</h3>
@@ -124,7 +122,7 @@
                         der Serverbesitzer muss sie nicht kaufen.</p>
                     <p>HINWEIS: Diese "kostenlosen" Gelände funktionieren NUR auf einem dedizierten Server ohne Rendering. Sie können nicht
                         vom Client aus verwendet werden.</p>
-                    <div class="div2button"><button>Herunterladen</button></div>
+                    <div class="div2button" onclick="downloadFile2()"><button>Herunterladen</button></div>
                 </div>
             </div>
         </div>
@@ -230,6 +228,7 @@
 
     </footer>
 
+    <script src="app.js"></script>
 </body>
 
 </html>

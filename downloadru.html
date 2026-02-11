@@ -9,9 +9,6 @@
 </head>
 
 <body>
-
-    <script src="script.js"></script>
-
     <header>
         <a href="ru.html"><img src="images-removebg-preview.png" alt="логотип"></a>
         <div class="header">
@@ -110,7 +107,7 @@
                         дополнительных модулей и пользовательских аддонов и модов, которые вы можете приобрести и скачать
                         на нашем сайте.</p>
                 </div>
-                <button>Скачать</button>
+                <button  onclick="downloadFile()">Скачать</button>
             </div>
             <div class="div2">
                 <h3>Сервер DCS World 2.9 (модульный установщик)</h3>
@@ -125,7 +122,7 @@
                         владельцу сервера не нужно их покупать.</p>
                     <p>ПРИМЕЧАНИЕ: эти «бесплатные» местности работают ТОЛЬКО на выделённом сервере без рендеринга. Их нельзя
                         использовать на клиенте.</p>
-                    <div class="div2button"><button>Скачать</button></div>
+                    <div class="div2button" onclick="downloadFile2()"><button>Скачать</button></div>
                 </div>
             </div>
         </div>
@@ -233,6 +230,8 @@
         </div>
 
     </footer>
+
+    <script src="app.js"></script>
 
 </body>
 

@@ -9,9 +9,6 @@
 </head>
 
 <body>
-
-    <script src="script.js"></script>
-
     <header>
         <a href="fr.html"><img src="images-removebg-preview.png" alt="logo"></a>
         <div class="header">
@@ -108,7 +105,7 @@
                         de planifier et d'exécuter des missions très sophistiquées. DCS World est largement extensible via des modules supplémentaires ainsi que
                         des add-ons et mods créés par les utilisateurs, que vous pouvez acheter et télécharger depuis notre site.</p>
                 </div>
-                <button>Télécharger</button>
+                <button  onclick="downloadFile()">Télécharger</button>
             </div>
             <div class="div2">
                 <h3>Serveur dédié DCS World 2.9 (installateur modulaire)</h3>
@@ -121,7 +118,7 @@
                     <p>Les terrains et unités WWII ne nécessitent pas d'activation lorsqu'ils sont lancés en mode serveur sans rendu, le propriétaire du serveur n'a pas
                         besoin de les acheter.</p>
                     <p>REMARQUE : ces terrains "gratuits" ne fonctionnent QUE sur un serveur dédié sans rendu. Vous ne pouvez pas les utiliser sur le client.</p>
-                    <div class="div2button"><button>Télécharger</button></div>
+                    <div class="div2button" onclick="downloadFile2()"><button>Télécharger</button></div>
                 </div>
             </div>
         </div>
@@ -229,6 +226,8 @@
         </div>
 
     </footer>
+
+        <script src="app.js"></script>
 
 </body>
 

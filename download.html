@@ -10,8 +10,6 @@
 
 <body>
 
-    <script src="script.js"></script>
-
     <header>
         <a href="index.html"><img src="images-removebg-preview.png" alt="logo"></a>
         <div class="header">
@@ -114,7 +112,7 @@
                             user-made
                             add-ons and mods which you can purchase and download from our site.</p>
                     </div>
-                    <button> Download </button>
+                    <button  onclick="downloadFile()"> Download </button>
                 </div>
                 <div class="div2">
                     <h3>DCS World 2.9 Dedicated Server (modular installer)</h3>
@@ -135,7 +133,7 @@
                         <p>NOTE: these "free" terrains can work ONLY on dedicated server without rendering. You can't
                             use
                             them on the client.</p>
-                        <div class="div2button"><button> Download </button></div>
+                        <div class="div2button" onclick="downloadFile2()"><button> Download </button></div>
                     </div>
                 </div>
             </div>
@@ -245,6 +243,7 @@
 
     </footer>
 
+    <script src="app.js"></script>
 </body>
 
 </html>
