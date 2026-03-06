@@ -31,7 +31,6 @@
                         <li><a href="#dashboard" class="nav-link active"
                                 onclick="showSection('dashboard')">Dashboard</a></li>
                         <li><a href="#admins" class="nav-link" onclick="showSection('admins')">Manage Admins</a></li>
-                        <li><a href="#users" class="nav-link" onclick="showSection('users')">Users</a></li>
                         <li><a href="#settings" class="nav-link" onclick="showSection('settings')">Settings</a></li>
                     </ul>
                 </nav>
@@ -48,10 +47,6 @@
                         <div class="stat-card">
                             <h3>Total Admins</h3>
                             <p class="stat-number" id="totalAdmins">0</p>
-                        </div>
-                        <div class="stat-card">
-                            <h3>Total Users</h3>
-                            <p class="stat-number" id="totalUsers">0</p>
                         </div>
                         <div class="stat-card">
                             <h3>Active Sessions</h3>
@@ -122,33 +117,6 @@
                         </table>
                     </div>
                 </section>
-
-                <!-- Users Section -->
-                <section id="users" class="section">
-                    <div class="section-header">
-                        <h2>Users Management</h2>
-                    </div>
-                    <div class="table-container">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Registration Date</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="5" style="text-align: center; padding: 20px;">No users data available
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
                 <!-- Settings Section -->
                 <section id="settings" class="section">
                     <div class="section-header">

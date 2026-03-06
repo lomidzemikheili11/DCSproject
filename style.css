@@ -726,3 +726,32 @@ footer h4 a {
         gap: 20px;
     }
 }
+
+/* admin dashboard div */
+
+.AdminDashboard {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: rgb(255, 162, 0);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.AdminDashboard:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.AdminDashboard svg {
+    fill: white;
+    width: 30px;
+    height: 30px;
+}
