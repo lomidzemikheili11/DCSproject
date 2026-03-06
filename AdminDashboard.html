@@ -1,11 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Dashboard - DCS Project</title>
+        <link rel="stylesheet" href="admin-dashboard.css">
+    </head>
+
+    <body>
+        <div class="admin-container">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h1>Admin Panel</h1>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#dashboard" class="nav-link active"
+                                onclick="showSection('dashboard')">Dashboard</a></li>
+                        <li><a href="#admins" class="nav-link" onclick="showSection('admins')">Manage Admins</a></li>
+                        <li><a href="#users" class="nav-link" onclick="showSection('users')">Users</a></li>
+                        <li><a href="#settings" class="nav-link" onclick="showSection('settings')">Settings</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="section active">
+                    <div class="section-header">
+                        <h2>Dashboard</h2>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h3>Total Admins</h3>
+                            <p class="stat-number" id="totalAdmins">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Users</h3>
+                            <p class="stat-number" id="totalUsers">0</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Active Sessions</h3>
+                            <p class="stat-number" id="activeSessions">0</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Manage Admins Section -->
+                <section id="admins" class="section">
+                    <div class="section-header">
+                        <h2>Manage Admins</h2>
+                        <button class="btn btn-primary" onclick="openAddAdminModal()">+ Add New Admin</button>
+                    </div>
+
+                    <!-- Add Admin Form -->
+                    <div id="addAdminModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeAddAdminModal()">&times;</span>
+                            <h3>Add New Admin</h3>
+                            <form id="addAdminForm" onsubmit="addAdmin(event)">
+                                <div class="form-group">
+                                    <label for="adminName">Full Name:</label>
+                                    <input type="text" id="adminName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="adminEmail">Email:</label>
+                                    <input type="email" id="adminEmail" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="adminPhone">Phone:</label>
+                                    <input type="tel" id="adminPhone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="adminRole">Role:</label>
+                                    <select id="adminRole" required>
+                                        <option value="">Select Role</option>
+                                        <option value="Super Admin">Super Admin</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Moderator">Moderator</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="adminPassword">Temporary Password:</label>
+                                    <input type="password" id="adminPassword" required>
+                                </div>
+                                <button type="submit" class="btn btn-success">Add Admin</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Admins Table -->
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminTableBody">
+                                <!-- Admins will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Users Section -->
+                <section id="users" class="section">
+                    <div class="section-header">
+                        <h2>Users Management</h2>
+                    </div>
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Registration Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="5" style="text-align: center; padding: 20px;">No users data available
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings" class="section">
+                    <div class="section-header">
+                        <h2>Settings</h2>
+                    </div>
+                    <div class="settings-group">
+                        <h3>Admin Panel Settings</h3>
+                        <div class="form-group">
+                            <label for="siteName">Site Name:</label>
+                            <input type="text" id="siteName" value="DCS Project">
+                        </div>
+                        <div class="form-group">
+                            <label for="adminEmail">Admin Email:</label>
+                            <input type="email" id="adminEmail" value="admin@dcsproject.com">
+                        </div>
+                        <button class="btn btn-success" onclick="saveSettings()">Save Settings</button>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <script src="admin-dashboard.js"></script>
+    </body>
+
+    </html>
 </body>
+
 </html>
