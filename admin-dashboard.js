@@ -1,32 +1,36 @@
+// default password
+if (!localStorage.getItem("adminPassword")) {
+    localStorage.setItem("adminPassword", "admin123");
+}
+
 // Admin data storage (in real app, this would be from a database)
 let admins = JSON.parse(localStorage.getItem('admins')) || [];
 
 // Initialize dashboard
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     loadAdmins();
     updateDashboardStats();
 });
 
 // Show section
-function showSection(sectionId) {
-    // Hide all sections
+function showSection(sectionId, event) {
     const sections = document.querySelectorAll('.section');
     sections.forEach(section => {
         section.classList.remove('active');
     });
 
-    // Remove active class from all nav links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.classList.remove('active');
     });
 
-    // Show selected section
     document.getElementById(sectionId).classList.add('active');
 
-    // Add active class to clicked nav link
-    event.target.classList.add('active');
+    if (event) {
+        event.target.classList.add('active');
+    }
 }
+
 
 // Open Add Admin Modal
 function openAddAdminModal() {
@@ -42,7 +46,7 @@ function closeAddAdminModal() {
 }
 
 // Close modal when clicking outside
-window.onclick = function(event) {
+window.onclick = function (event) {
     const modal = document.getElementById('addAdminModal');
     if (event.target == modal) {
         modal.classList.remove('active');
@@ -60,8 +64,7 @@ function addAdmin(event) {
         phone: document.getElementById('adminPhone').value,
         role: document.getElementById('adminRole').value,
         password: document.getElementById('adminPassword').value,
-        status: 'Active',
-        dateAdded: new Date().toLocaleDateString()
+        status: 'Active'
     };
 
     admins.push(newAdmin);
@@ -71,8 +74,9 @@ function addAdmin(event) {
     updateDashboardStats();
     closeAddAdminModal();
 
-    alert('Admin added successfully!');
+    alert("Admin added successfully!");
 }
+
 
 // Load and display admins
 function loadAdmins() {
@@ -103,10 +107,26 @@ function loadAdmins() {
 
 // Edit admin (placeholder function)
 function editAdmin(id) {
+
     const admin = admins.find(a => a.id === id);
-    if (admin) {
-        alert(`Edit functionality for ${admin.name} - To be implemented`);
-    }
+
+    if (!admin) return;
+
+    const newName = prompt("Edit Name:", admin.name);
+    if (newName !== null) admin.name = newName;
+
+    const newEmail = prompt("Edit Email:", admin.email);
+    if (newEmail !== null) admin.email = newEmail;
+
+    const newPhone = prompt("Edit Phone:", admin.phone);
+    if (newPhone !== null) admin.phone = newPhone;
+
+    const newRole = prompt("Edit Role:", admin.role);
+    if (newRole !== null) admin.role = newRole;
+
+    localStorage.setItem('admins', JSON.stringify(admins));
+
+    loadAdmins();
 }
 
 // Delete admin
@@ -123,7 +143,6 @@ function deleteAdmin(id) {
 // Update dashboard statistics
 function updateDashboardStats() {
     document.getElementById('totalAdmins').textContent = admins.length;
-    document.getElementById('totalUsers').textContent = '0'; // Placeholder
     document.getElementById('activeSessions').textContent = '0'; // Placeholder
 }
 
@@ -139,4 +158,39 @@ function logout() {
         alert('Logged out successfully!');
         window.location.href = 'login.html';
     }
+}
+
+function checkAdminPassword(){
+
+    const entered = document.getElementById("adminLoginPassword").value;
+    const saved = localStorage.getItem("adminPassword");
+
+    if(entered === saved){
+
+        document.getElementById("adminLogin").style.display = "none";
+        document.getElementById("adminPanel").style.display = "flex";
+
+    }else{
+
+        document.getElementById("loginError").textContent = "Wrong Password";
+
+    }
+}
+
+// Change admin password
+
+function changePassword() {
+
+    const newPassword = document.getElementById("newAdminPassword").value;
+
+    if (newPassword.length < 4) {
+        alert("Password must be at least 4 characters");
+        return;
+    }
+
+    localStorage.setItem("adminPassword", newPassword);
+
+    alert("Password changed successfully!");
+
+    document.getElementById("newAdminPassword").value = "";
 }

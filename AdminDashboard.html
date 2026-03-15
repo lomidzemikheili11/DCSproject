@@ -19,7 +19,19 @@
     </head>
 
     <body>
-        <div class="admin-container">
+        <div id="adminLogin" class="login-container">
+            <div class="login-box">
+                <h2>Admin Login</h2>
+
+                <input type="password" id="adminLoginPassword" placeholder="Enter Admin Password">
+
+                <button onclick="checkAdminPassword()">Login</button>
+
+                <p id="loginError"></p>
+            </div>
+        </div>
+
+        <div class="admin-container" id="adminPanel" style="display:none;">
             <!-- Sidebar Navigation -->
             <aside class="sidebar">
                 <div class="sidebar-header">
@@ -29,9 +41,14 @@
                 <nav class="nav-menu">
                     <ul>
                         <li><a href="#dashboard" class="nav-link active"
-                                onclick="showSection('dashboard')">Dashboard</a></li>
-                        <li><a href="#admins" class="nav-link" onclick="showSection('admins')">Manage Admins</a></li>
-                        <li><a href="#settings" class="nav-link" onclick="showSection('settings')">Settings</a></li>
+                                onclick="showSection('dashboard', event)">Dashboard</a></li>
+
+                        <li><a href="#admins" class="nav-link" onclick="showSection('admins', event)">Manage Admins</a>
+                        </li>
+
+                        <li><a href="#settings" class="nav-link" onclick="showSection('settings', event)">Settings</a>
+                        </li>
+
                     </ul>
                 </nav>
             </aside>
@@ -133,6 +150,11 @@
                             <input type="email" id="adminEmail" value="admin@dcsproject.com">
                         </div>
                         <button class="btn btn-success" onclick="saveSettings()">Save Settings</button>
+                    </div>
+                    <div class="setting-item">
+                        <label>Change Admin Password</label>
+                        <input type="password" id="newAdminPassword" placeholder="New Password">
+                        <button onclick="changePassword()">Change Password</button>
                     </div>
                 </section>
             </main>
