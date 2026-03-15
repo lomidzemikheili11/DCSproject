@@ -213,3 +213,42 @@ function changePassword() {
 
     document.getElementById("newAdminPassword").value = "";
 }
+
+//filters
+
+function filterAdmins() {
+    const nameFilter = document.getElementById('adminSearchInput').value.toLowerCase();
+    const roleFilter = document.getElementById('adminRoleFilter').value;
+
+    const tableBody = document.getElementById('adminTableBody');
+    tableBody.innerHTML = '';
+
+    const filteredAdmins = admins.filter(admin => {
+        const matchesName = admin.name.toLowerCase().includes(nameFilter);
+        const matchesRole = roleFilter === '' || admin.role === roleFilter;
+        return matchesName && matchesRole;
+    });
+
+    if (filteredAdmins.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 20px;">No admins found</td></tr>';
+        return;
+    }
+
+    filteredAdmins.forEach(admin => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${admin.name}</td>
+            <td>${admin.email}</td>
+            <td>${admin.phone || '-'}</td>
+            <td><span class="badge">${admin.role}</span></td>
+            <td><span class="status-badge status-active">${admin.status}</span></td>
+            <td>
+                <button class="btn btn-warning" onclick="editAdmin(${admin.id})">Edit</button>
+                <button class="btn btn-danger" onclick="deleteAdmin(${admin.id})">Delete</button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+

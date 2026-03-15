@@ -76,6 +76,15 @@
                 <section id="admins" class="section">
                     <div class="section-header">
                         <h2>Manage Admins</h2>
+                        <div class="admin-filters">
+                            <input type="text" id="adminSearchInput" placeholder="Search here" onkeyup="filterAdmins()">
+                            <select id="adminRoleFilter" onchange="filterAdmins()">
+                                <option value="">All Roles</option>
+                                <option value="Super Admin">Super Admin</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Moderator">Moderator</option>
+                            </select>
+                        </div>
                         <button class="btn btn-primary" onclick="openAddAdminModal()">+ Add New Admin</button>
                     </div>
 

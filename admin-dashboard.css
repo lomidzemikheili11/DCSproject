@@ -481,3 +481,20 @@ body {
     color: red;
     margin-top: 10px;
 }
+
+/* Admin Filters (Search + Role Filter) */
+.admin-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.admin-filters input,
+.admin-filters select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
