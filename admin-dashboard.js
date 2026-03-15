@@ -112,22 +112,41 @@ function editAdmin(id) {
 
     if (!admin) return;
 
-    const newName = prompt("Edit Name:", admin.name);
-    if (newName !== null) admin.name = newName;
+    document.getElementById("editAdminId").value = admin.id;
+    document.getElementById("editAdminName").value = admin.name;
+    document.getElementById("editAdminEmail").value = admin.email;
+    document.getElementById("editAdminPhone").value = admin.phone;
+    document.getElementById("editAdminRole").value = admin.role;
 
-    const newEmail = prompt("Edit Email:", admin.email);
-    if (newEmail !== null) admin.email = newEmail;
+    document.getElementById("editAdminModal").classList.add("active");
+}
 
-    const newPhone = prompt("Edit Phone:", admin.phone);
-    if (newPhone !== null) admin.phone = newPhone;
+function closeEditAdminModal(){
+    document.getElementById("editAdminModal").classList.remove("active");
+}
 
-    const newRole = prompt("Edit Role:", admin.role);
-    if (newRole !== null) admin.role = newRole;
+function saveAdminEdit(event){
 
-    localStorage.setItem('admins', JSON.stringify(admins));
+    event.preventDefault();
+
+    const id = Number(document.getElementById("editAdminId").value);
+
+    const admin = admins.find(a => a.id === id);
+
+    admin.name = document.getElementById("editAdminName").value;
+    admin.email = document.getElementById("editAdminEmail").value;
+    admin.phone = document.getElementById("editAdminPhone").value;
+    admin.role = document.getElementById("editAdminRole").value;
+
+    localStorage.setItem("admins", JSON.stringify(admins));
 
     loadAdmins();
+
+    closeEditAdminModal();
+
+    alert("Admin updated!");
 }
+
 
 // Delete admin
 function deleteAdmin(id) {
@@ -160,17 +179,17 @@ function logout() {
     }
 }
 
-function checkAdminPassword(){
+function checkAdminPassword() {
 
     const entered = document.getElementById("adminLoginPassword").value;
     const saved = localStorage.getItem("adminPassword");
 
-    if(entered === saved){
+    if (entered === saved) {
 
         document.getElementById("adminLogin").style.display = "none";
         document.getElementById("adminPanel").style.display = "flex";
 
-    }else{
+    } else {
 
         document.getElementById("loginError").textContent = "Wrong Password";
 
