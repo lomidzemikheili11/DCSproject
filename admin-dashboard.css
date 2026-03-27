@@ -18,10 +18,10 @@ body {
 /* Sidebar */
 .sidebar {
     width: 250px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: orange;
     color: white;
     padding: 20px;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     height: 100vh;
     overflow-y: auto;
@@ -29,7 +29,7 @@ body {
 
 .sidebar-header {
     margin-bottom: 30px;
-    border-bottom: 2px solid rgba(255,255,255,0.2);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
     padding-bottom: 15px;
 }
 
@@ -41,9 +41,9 @@ body {
 .logout-btn {
     width: 100%;
     padding: 8px 12px;
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255, 196, 0, 0.562);
     color: white;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgb(255, 166, 0);
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
@@ -51,7 +51,7 @@ body {
 }
 
 .logout-btn:hover {
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgb(255, 153, 0);
 }
 
 /* Navigation Menu */
@@ -74,11 +74,11 @@ body {
 }
 
 .nav-link:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-link.active {
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     border-left: 4px solid white;
 }
 
@@ -104,6 +104,7 @@ body {
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -136,14 +137,14 @@ body {
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
     text-align: center;
     transition: transform 0.3s ease;
 }
 
 .stat-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
 }
 
 .stat-card h3 {
@@ -155,7 +156,7 @@ body {
 .stat-number {
     font-size: 32px;
     font-weight: bold;
-    color: #667eea;
+    color: rgb(252, 170, 37);
 }
 
 /* Buttons */
@@ -170,21 +171,21 @@ body {
 }
 
 .btn-primary {
-    background-color: #667eea;
+    background-color: rgb(252, 170, 37);
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: #5568d3;
+    background-color: rgb(255, 157, 0);
 }
 
 .btn-success {
-    background-color: #48bb78;
+    background-color: rgb(252, 170, 37);
     color: white;
 }
 
 .btn-success:hover {
-    background-color: #38a169;
+    background-color: rgb(255, 157, 0);
 }
 
 .btn-danger {
@@ -210,7 +211,7 @@ body {
     background: white;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
 .admin-table {
@@ -266,7 +267,7 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     animation: fadeIn 0.3s ease;
 }
 
@@ -280,7 +281,7 @@ body {
     background-color: white;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    /* box-shadow: 0 0 4px rgba(0, 0, 0, 0.2); */
     width: 90%;
     max-width: 500px;
     max-height: 90vh;
@@ -333,15 +334,17 @@ body {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: rgb(252, 170, 37);
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .settings-group {
-    background: white;
+    background: rgb(255, 255, 255);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    width: 1000px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
 
 .settings-group h3 {
@@ -349,46 +352,17 @@ body {
     color: #333;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .sidebar {
-        position: fixed;
-        left: -250px;
-        height: 100vh;
-        z-index: 999;
-        transition: left 0.3s ease;
-    }
-
-    .main-content {
-        margin-left: 0;
-        padding: 20px;
-    }
-
-    .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .section-header h2 {
-        margin-bottom: 15px;
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .modal-content {
-        width: 95%;
-    }
-}
-
 /* Password Change Setting */
 .setting-item {
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
     gap: 10px;
-    max-width: 350px;
+    width: 600px;
     margin-top: 10px;
+    background-color: white;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    padding: 40px;
 }
 
 .setting-item label {
@@ -406,7 +380,7 @@ body {
 
 .setting-item input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: rgb(252, 170, 37);
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -414,7 +388,7 @@ body {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background: #667eea;
+    background: rgb(252, 170, 37);
     color: white;
     font-weight: 600;
     cursor: pointer;
@@ -422,7 +396,7 @@ body {
 }
 
 .setting-item button:hover {
-    background: #5568d3;
+    background: rgb(255, 157, 0);
     transform: translateY(-1px);
 }
 
@@ -430,13 +404,21 @@ body {
     transform: translateY(0);
 }
 
+/* settiings */
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
 
 /* Admin Login */
 .login-container {
     position: fixed;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #cfb22d 0%, #ffbb00 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -448,7 +430,6 @@ body {
     border-radius: 10px;
     width: 300px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .login-box h2 {
@@ -467,14 +448,14 @@ body {
     width: 100%;
     padding: 10px;
     border: none;
-    background: #667eea;
+    background: #ffd000;
     color: white;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .login-box button:hover {
-    background: #5568d3;
+    background: #ffae00;
 }
 
 #loginError {

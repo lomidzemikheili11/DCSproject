@@ -151,11 +151,11 @@ header nav a img {
     border-bottom: 4px solid transparent;
 }
 
-.A {
+.A, .B, .C, .D {
     position: relative;
 }
 
-.A::after {
+.A::after,.B::after,.C::after,.D::after {
     content: "";
     position: absolute;
     left: 0;
@@ -167,47 +167,7 @@ header nav a img {
     transition: 0.3s;
 }
 
-.A:hover::after {
-    transform: scaleX(1);
-}
-
-.B {
-    position: relative;
-}
-
-.B::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -16px;
-    width: 100%;
-    height: 4px;
-    background: rgb(255, 145, 0);
-    transform: scaleX(0);
-    transition: 0.3s;
-}
-
-.B:hover::after {
-    transform: scaleX(1);
-}
-
-.C {
-    position: relative;
-}
-
-.C::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -16px;
-    width: 100%;
-    height: 4px;
-    background: rgb(255, 145, 0);
-    transform: scaleX(0);
-    transition: 0.3s;
-}
-
-.C:hover::after {
+.A:hover::after,.B:hover::after,.C:hover::after,.D:hover::after {
     transform: scaleX(1);
 }
 

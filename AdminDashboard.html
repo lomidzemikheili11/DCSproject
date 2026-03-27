@@ -21,7 +21,7 @@
     <body>
         <div id="adminLogin" class="login-container">
             <div class="login-box">
-                <h2>Admin Login</h2>
+                <h2>DCS Admin Login</h2>
 
                 <input type="password" id="adminLoginPassword" placeholder="Enter Admin Password">
 
@@ -180,25 +180,27 @@
                 </section>
                 <!-- Settings Section -->
                 <section id="settings" class="section">
-                    <div class="section-header">
-                        <h2>Settings</h2>
-                    </div>
-                    <div class="settings-group">
-                        <h3>Admin Panel Settings</h3>
-                        <div class="form-group">
-                            <label for="siteName">Site Name:</label>
-                            <input type="text" id="siteName" value="DCS Project">
+                    <div class="settings-container">
+                        <div class="section-header">
+                            <h2>Settings</h2>
                         </div>
-                        <div class="form-group">
-                            <label for="adminEmail">Admin Email:</label>
-                            <input type="email" id="adminEmail" value="admin@dcsproject.com">
+                        <div class="settings-group">
+                            <h3>Admin Panel Settings</h3>
+                            <div class="form-group">
+                                <label for="siteName">Site Name:</label>
+                                <input type="text" id="siteName" value="DCS Project">
+                            </div>
+                            <div class="form-group">
+                                <label for="adminEmail">Admin Email:</label>
+                                <input type="email" id="adminEmail" value="admin@dcsproject.com">
+                            </div>
+                            <button class="btn btn-success" onclick="saveSettings()">Save Settings</button>
                         </div>
-                        <button class="btn btn-success" onclick="saveSettings()">Save Settings</button>
-                    </div>
-                    <div class="setting-item">
-                        <label>Change Admin Password</label>
-                        <input type="password" id="newAdminPassword" placeholder="New Password">
-                        <button onclick="changePassword()">Change Password</button>
+                        <div class="setting-item">
+                            <label>Change Admin Password</label>
+                            <input type="password" id="newAdminPassword" placeholder="New Password">
+                            <button onclick="changePassword()">Change Password</button>
+                        </div>
                     </div>
                 </section>
             </main>
