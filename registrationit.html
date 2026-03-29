@@ -49,41 +49,75 @@
             <h2>Crea un account</h2>
             <div class="name">
                 <div class="input-field">
-                    <input type="text" required>
+                    <input type="text" id="firstName" required>
                     <label>Nome</label>
                 </div>
-
                 <div class="input-field">
-                    <input type="text" required>
+                    <input type="text" id="lastName" required>
                     <label>Cognome</label>
                 </div>
             </div>
 
             <div class="input-field">
-                <input type="email" required>
-                <label>Email</label>
+                <input type="email" id="email" required>
+                <label>Indirizzo e-mail</label>
+            </div>
+
+            <div class="name">
+                <div class="input-field">
+                    <input type="number" id="age" required min="13">
+                    <label>Età</label>
+                </div>
+                <div class="input-field">
+                    <select id="gender" required
+                        style="width: 100%; height: 100%; background: #fafafa00; border-radius: 6px; border: 1px solid rgb(197, 197, 197); color: grey; padding: 10px;">
+                        <option value="MALE">Maschio</option>
+                        <option value="FEMALE">Femmina</option>
+                    </select>
+                </div>
             </div>
 
             <div class="input-field">
-                <input type="text" required minlength="3">
-                <label>Username (min. 3 caratteri)</label>
+                <input type="text" id="address" required>
+                <label>Indirizzo</label>
+            </div>
+
+            <div class="name">
+                <div class="input-field">
+                    <input type="text" id="phone" required>
+                    <label>Numero di telefono</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="zipcode" required>
+                    <label>Codice postale</label>
+                </div>
+            </div>
+
+            <div class="input-field">
+                <input type="url" id="avatar" placeholder="https://...">
+                <label>URL dell'avatar</label>
             </div>
 
             <div class="password">
                 <div class="input-field">
-                    <input type="password" required minlength="8">
+                    <input type="password" id="password" required minlength="8">
                     <label>Password *</label>
                 </div>
-
                 <div class="input-field">
-                    <input type="password" required minlength="8">
+                    <input type="password" id="confirmPassword" required minlength="8">
                     <label>Conferma password *</label>
                 </div>
             </div>
 
             <button type="submit">Registrati</button>
+
+            <div class="account">
+                <h4>already have an account ?</h4>
+                <a href="loginit.html">Log in</a>
+            </div>
         </form>
     </div>
+    <script src="registration.js"></script>
 
 </body>
 

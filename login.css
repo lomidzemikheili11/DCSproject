@@ -185,6 +185,21 @@ body {
     background: #ff9d00;
 }
 
+h4 {
+    color: rgb(59, 59, 59);
+}
+
+a {
+    color: rgb(0, 94, 255);
+}
+
+.account {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-top: 40px;
+}
+
 @media screen and (max-width:768px) {
 
         /* burger_button */
