@@ -43,7 +43,9 @@ h5 {
     height: 50px;
 }
 
-h4, h1, div {
+h4,
+h2,
+h1 {
     font-family: "Inter", sans-serif;
 }
 
@@ -360,71 +362,58 @@ footer h4 a {
 }
 
 
-/* --- Planes Grid (კონტეინერი) --- */
+/* plane-card */
+
 .planes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
     padding: 40px;
 }
 
-/* --- Plane Card (მთავარი ჩარჩო) --- */
 .plane-card {
     background-color: transparent;
-    width: 100%;
-    height: 200px; /* სიმაღლე გავზარდეთ, რომ ფოტო და ტექსტი კარგად ჩაეტიოს */
-    perspective: 1000px; /* 3D ეფექტისთვის */
+    height: 200px;
+    max-width: 400px;
+    perspective: 1000px;
     cursor: pointer;
-    transition: transform 0.3s ease;
-    position: relative;
 }
 
-/* კურსორის მიტანისას ნაზი გადიდება */
 .plane-card:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
     z-index: 10;
+    transition: 0.3s;
+    /* რომ მეზობელ ბარათებს ზემოდან მოექცეს */
 }
 
-/* --- Card Inner (ნაწილი რომელიც ბრუნავს) --- */
 .card-inner {
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.8s;
     transform-style: preserve-3d;
 }
 
-/* კლასი, რომელსაც JS ამატებს კლიკისას */
+/* ეს კლასი ატრიალებს ბარათს */
 .plane-card.is-flipped .card-inner {
     transform: rotateY(180deg);
 }
 
-/* --- წინა და უკანა მხარეების საერთო სტილი --- */
 .card-front,
 .card-back {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border: 1px solid #333;
-    border-radius: 12px;
+    border-radius: 15px;
     overflow: hidden;
+    border: 1px solid #333;
 }
 
-/* --- წინა მხარე --- */
 .card-front {
     background: #222;
 }
 
-.card-front img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* ფოტო ავსებს ბარათს გაწელვის გარეშე */
-    display: block;
-}
-
-/* --- უკანა მხარე --- */
 .card-back {
     background: #1a1a1a;
     color: white;
@@ -433,52 +422,42 @@ footer h4 a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 25px;
+    padding: 20px;
     text-align: center;
 }
 
-/* --- გულის ხატულა (ფავორიტები) --- */
+.plane-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- გულის ხატულა (აქ მხოლოდ წაშლისთვისაა) --- */
 .heart-icon {
     position: absolute;
     top: 15px;
     right: 15px;
-    z-index: 100; /* რომ ფოტოს ზემოდან მოექცეს */
-    font-size: 28px;
+    font-size: 24px;
+    color: #ff4757;
     cursor: pointer;
-    transition: transform 0.2s ease, color 0.2s ease;
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-    /* backface-visibility: hidden მნიშვნელოვანია, რომ გული ბრუნვისას არ გაქრეს */
-    backface-visibility: hidden;
-    pointer-events: auto;
+    z-index: 10;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
 }
 
-.heart-icon:hover {
-    transform: scale(1.2);
+/* --- შეტყობინება "სია ცარიელია" --- */
+.no-favs {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #aaa;
+    margin-top: 50px;
 }
 
-/* --- დამატებითი ტექსტური სტილები ბარათზე --- */
-.plane-name-overlay {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: linear-gradient(transparent, rgba(0,0,0,0.8));
-    color: white;
-    padding: 15px;
-    font-weight: bold;
-    font-size: 1.2rem;
+.go-back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    color: #ff9d00;
+    text-decoration: underline;
 }
-
-.card-back h3 {
-    margin-bottom: 10px;
-    color: #fff;
-}
-
-.card-back p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    color: #ccc;
-}
-
 
 .PcardsH {
     margin-top: 50px;

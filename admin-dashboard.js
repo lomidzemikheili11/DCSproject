@@ -32,139 +32,6 @@ function showSection(sectionId, event) {
 }
 
 
-// Open Add Admin Modal
-function openAddAdminModal() {
-    const modal = document.getElementById('addAdminModal');
-    modal.classList.add('active');
-}
-
-// Close Add Admin Modal
-function closeAddAdminModal() {
-    const modal = document.getElementById('addAdminModal');
-    modal.classList.remove('active');
-    document.getElementById('addAdminForm').reset();
-}
-
-// Close modal when clicking outside
-window.onclick = function (event) {
-    const modal = document.getElementById('addAdminModal');
-    if (event.target == modal) {
-        modal.classList.remove('active');
-    }
-}
-
-// Add new admin
-function addAdmin(event) {
-    event.preventDefault();
-
-    const newAdmin = {
-        id: Date.now(),
-        name: document.getElementById('adminName').value,
-        email: document.getElementById('adminEmail').value,
-        phone: document.getElementById('adminPhone').value,
-        role: document.getElementById('adminRole').value,
-        password: document.getElementById('adminPassword').value,
-        status: 'Active'
-    };
-
-    admins.push(newAdmin);
-    localStorage.setItem('admins', JSON.stringify(admins));
-
-    loadAdmins();
-    updateDashboardStats();
-    closeAddAdminModal();
-
-    alert("Admin added successfully!");
-}
-
-
-// Load and display admins
-function loadAdmins() {
-    const tableBody = document.getElementById('adminTableBody');
-    tableBody.innerHTML = '';
-
-    if (admins.length === 0) {
-        tableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 20px;">No admins added yet</td></tr>';
-        return;
-    }
-
-    admins.forEach(admin => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${admin.name}</td>
-            <td>${admin.email}</td>
-            <td>${admin.phone || '-'}</td>
-            <td><span class="badge">${admin.role}</span></td>
-            <td><span class="status-badge status-active">${admin.status}</span></td>
-            <td>
-                <button class="btn btn-warning" onclick="editAdmin(${admin.id})">Edit</button>
-                <button class="btn btn-danger" onclick="deleteAdmin(${admin.id})">Delete</button>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-
-// Edit admin (placeholder function)
-function editAdmin(id) {
-
-    const admin = admins.find(a => a.id === id);
-
-    if (!admin) return;
-
-    document.getElementById("editAdminId").value = admin.id;
-    document.getElementById("editAdminName").value = admin.name;
-    document.getElementById("editAdminEmail").value = admin.email;
-    document.getElementById("editAdminPhone").value = admin.phone;
-    document.getElementById("editAdminRole").value = admin.role;
-
-    document.getElementById("editAdminModal").classList.add("active");
-}
-
-function closeEditAdminModal(){
-    document.getElementById("editAdminModal").classList.remove("active");
-}
-
-function saveAdminEdit(event){
-
-    event.preventDefault();
-
-    const id = Number(document.getElementById("editAdminId").value);
-
-    const admin = admins.find(a => a.id === id);
-
-    admin.name = document.getElementById("editAdminName").value;
-    admin.email = document.getElementById("editAdminEmail").value;
-    admin.phone = document.getElementById("editAdminPhone").value;
-    admin.role = document.getElementById("editAdminRole").value;
-
-    localStorage.setItem("admins", JSON.stringify(admins));
-
-    loadAdmins();
-
-    closeEditAdminModal();
-
-    alert("Admin updated!");
-}
-
-
-// Delete admin
-function deleteAdmin(id) {
-    if (confirm('Are you sure you want to delete this admin?')) {
-        admins = admins.filter(a => a.id !== id);
-        localStorage.setItem('admins', JSON.stringify(admins));
-        loadAdmins();
-        updateDashboardStats();
-        alert('Admin deleted successfully!');
-    }
-}
-
-// Update dashboard statistics
-function updateDashboardStats() {
-    document.getElementById('totalAdmins').textContent = admins.length;
-    document.getElementById('activeSessions').textContent = '0'; // Placeholder
-}
-
 // Save settings
 function saveSettings() {
     alert('Settings saved successfully!');
@@ -252,3 +119,144 @@ function filterAdmins() {
 }
 
 
+// plane-cards
+const API_URL = "https://69cd2b0dddc3cabb7bd23b56.mockapi.io/plane-cards";
+
+// 2. ცხრილის შევსება (თვითმფრინავების სია)
+async function fetchAdminPlanes() {
+    try {
+        const res = await fetch(API_URL);
+        const planes = await res.json();
+        const tableBody = document.getElementById('apiPlanesTable');
+        
+        if (!tableBody) return;
+
+        tableBody.innerHTML = planes.map(plane => `
+            <tr>
+                <td><img src="${plane.image}" width="60" style="border-radius:4px; border: 1px solid #ddd;"></td>
+                <td style="color: #333; font-weight: bold;">${plane.name}</td>
+                <td style="color: #555;">${plane.type}</td>
+                <td>
+                    <button class="btn btn-warning" onclick="editPlane('${plane.id}')">Edit</button>
+                    <button class="btn btn-danger" onclick="deletePlane('${plane.id}')">Delete</button>
+                </td>
+            </tr>
+        `).join('');
+    } catch (error) {
+        console.error("მონაცემების წამოღება ვერ მოხერხდა:", error);
+    }
+}
+
+// 3. მოდალის გახსნა (ახალი თვითმფრინავისთვის)
+function openPlaneModal() {
+    const modal = document.getElementById('planeModal');
+    const saveBtn = document.querySelector('.btn-save');
+    
+    // ფორმის გასუფთავება
+    document.getElementById('pName').value = "";
+    document.getElementById('pImage').value = "";
+    document.getElementById('pType').value = "Fighter";
+    document.getElementById('pDesc').value = "";
+
+    // ღილაკის დაბრუნება საწყის მდგომარეობაზე
+    saveBtn.innerText = "Save Aircraft";
+    saveBtn.onclick = savePlane;
+
+    modal.style.display = 'flex';
+}
+
+// 4. მოდალის დახურვა
+function closePlaneModal() {
+    document.getElementById('planeModal').style.display = 'none';
+}
+
+// 5. ახალი თვითმფრინავის შენახვა (POST)
+async function savePlane() {
+    const data = {
+        name: document.getElementById('pName').value,
+        image: document.getElementById('pImage').value,
+        type: document.getElementById('pType').value,
+        description: document.getElementById('pDesc').value
+    };
+
+    if (!data.name || !data.image) {
+        alert("Please fill in Name and Image URL!");
+        return;
+    }
+
+    const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+
+    if (res.ok) {
+        alert("Aircraft added!");
+        closePlaneModal();
+        fetchAdminPlanes();
+    }
+}
+
+// 6. რედაქტირება (ინფორმაციის ამოღება და ჩასმა ფორმაში)
+async function editPlane(id) {
+    try {
+        const res = await fetch(`${API_URL}/${id}`);
+        const plane = await res.json();
+
+        // ინპუტების შევსება
+        document.getElementById('pName').value = plane.name;
+        document.getElementById('pImage').value = plane.image;
+        document.getElementById('pType').value = plane.type;
+        document.getElementById('pDesc').value = plane.description;
+
+        // ღილაკის გადაკეთება "Update"-ზე
+        const saveBtn = document.querySelector('.btn-save');
+        saveBtn.innerText = "Update Aircraft";
+        saveBtn.onclick = () => updatePlane(id);
+
+        document.getElementById('planeModal').style.display = 'flex';
+    } catch (error) {
+        alert("Error loading aircraft data!");
+    }
+}
+
+// 7. განახლება (PUT)
+async function updatePlane(id) {
+    const updatedData = {
+        name: document.getElementById('pName').value,
+        image: document.getElementById('pImage').value,
+        type: document.getElementById('pType').value,
+        description: document.getElementById('pDesc').value
+    };
+
+    const res = await fetch(`${API_URL}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedData)
+    });
+
+    if (res.ok) {
+        alert("Aircraft updated!");
+        closePlaneModal();
+        fetchAdminPlanes();
+    }
+}
+
+// 8. წაშლა (DELETE)
+async function deletePlane(id) {
+    if (confirm("Are you sure you want to delete this aircraft?")) {
+        await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+        fetchAdminPlanes();
+    }
+}
+
+// 9. საწყისი ჩატვირთვა
+document.addEventListener('DOMContentLoaded', fetchAdminPlanes);
+
+// 10. ფანჯრის გარეთ კლიკზე დახურვა
+window.onclick = function(event) {
+    const modal = document.getElementById('planeModal');
+    if (event.target == modal) {
+        closePlaneModal();
+    }
+}

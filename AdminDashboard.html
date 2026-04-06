@@ -43,7 +43,9 @@
                         <li><a href="#dashboard" class="nav-link active"
                                 onclick="showSection('dashboard', event)">Dashboard</a></li>
 
-                        <li><a href="#admins" class="nav-link" onclick="showSection('admins', event)">Manage Admins</a>
+                        <li>
+                            <a href="#planes-management" class="nav-link"
+                                onclick="showSection('planes-management', event)">plane Cards</a>
                         </li>
 
                         <li><a href="#settings" class="nav-link" onclick="showSection('settings', event)">Settings</a>
@@ -62,122 +64,71 @@
                     </div>
                     <div class="stats-grid">
                         <div class="stat-card">
-                            <h3>Total Admins</h3>
-                            <p class="stat-number" id="totalAdmins">0</p>
-                        </div>
-                        <div class="stat-card">
                             <h3>Active Sessions</h3>
                             <p class="stat-number" id="activeSessions">0</p>
                         </div>
                     </div>
                 </section>
 
-                <!-- Manage Admins Section -->
-                <section id="admins" class="section">
-                    <div class="section-header">
-                        <h2>Manage Admins</h2>
-                        <div class="admin-filters">
-                            <input type="text" id="adminSearchInput" placeholder="Search here" onkeyup="filterAdmins()">
-                            <select id="adminRoleFilter" onchange="filterAdmins()">
-                                <option value="">All Roles</option>
-                                <option value="Super Admin">Super Admin</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Moderator">Moderator</option>
-                            </select>
-                        </div>
-                        <button class="btn btn-primary" onclick="openAddAdminModal()">+ Add New Admin</button>
+                <section id="planes-management" class="section">
+                    <div class="section-header"
+                        style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
+                        <h2 style="color: #000000;">Plane Management</h2>
+                        <button class="btn btn-success" onclick="openPlaneModal()">+ Add New Plane</button>
                     </div>
 
-                    <!-- Add Admin Form -->
-                    <div id="addAdminModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close" onclick="closeAddAdminModal()">&times;</span>
-                            <h3>Add New Admin</h3>
-                            <form id="addAdminForm" onsubmit="addAdmin(event)">
-                                <div class="form-group">
-                                    <label for="adminName">Full Name:</label>
-                                    <input type="text" id="adminName" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="adminEmail">Email:</label>
-                                    <input type="email" id="adminEmail" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="adminPhone">Phone:</label>
-                                    <input type="tel" id="adminPhone">
-                                </div>
-                                <div class="form-group">
-                                    <label for="adminRole">Role:</label>
-                                    <select id="adminRole" required>
-                                        <option value="">Select Role</option>
-                                        <option value="Super Admin">Super Admin</option>
-                                        <option value="Admin">Admin</option>
-                                        <option value="Moderator">Moderator</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="adminPassword">Temporary Password:</label>
-                                    <input type="password" id="adminPassword" required>
-                                </div>
-                                <button type="submit" class="btn btn-success">Add Admin</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Edit Admin Modal -->
-                    <div id="editAdminModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close" onclick="closeEditAdminModal()">&times;</span>
-                            <h3>Edit Admin</h3>
-
-                            <form id="editAdminForm" onsubmit="saveAdminEdit(event)">
-                                <input type="hidden" id="editAdminId">
-
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" id="editAdminName" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input type="email" id="editAdminEmail" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Phone</label>
-                                    <input type="text" id="editAdminPhone">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Role</label>
-                                    <input type="text" id="editAdminRole">
-                                </div>
-
-                                <button type="submit" class="btn btn-success">Save</button>
-                            </form>
-                        </div>
-                    </div>
-
-
-                    <!-- Admins Table -->
-                    <div class="table-container">
-                        <table class="admin-table">
+                    <div class="table-container"
+                        style="background: #fff; border-radius: 8px; overflow: hidden; margin: 0 20px;">
+                        <table class="admin-table" style="width: 100%; border-collapse: collapse;">
                             <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Role</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
+                                <tr style="background: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                                    <th style="padding: 15px; text-align: left; color: #333;">Photo</th>
+                                    <th style="padding: 15px; text-align: left; color: #333;">Name</th>
+                                    <th style="padding: 15px; text-align: left; color: #333;">Type</th>
+                                    <th style="padding: 15px; text-align: left; color: #333;">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody id="adminTableBody">
-                                <!-- Admins will be populated here -->
+                            <tbody id="apiPlanesTable">
                             </tbody>
                         </table>
                     </div>
                 </section>
+
+                <div id="planeModal" class="admin-modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Aircraft Details</h3>
+                            <span class="close-modal" onclick="closePlaneModal()">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Aircraft Name:</label>
+                                <input type="text" id="pName" placeholder="მაგ: F-16C Viper">
+                            </div>
+                            <div class="form-group">
+                                <label>Image URL:</label>
+                                <input type="text" id="pImage" placeholder="https://link-to-image.jpg">
+                            </div>
+                            <div class="form-group">
+                                <label>Type:</label>
+                                <select id="pType">
+                                    <option value="Fighter">Fighter</option>
+                                    <option value="Striker">Striker</option>
+                                    <option value="Helicopter">Helicopter</option>
+                                    <option value="Transport">Transport</option>
+                                    <option value="Bomber">Bomber</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Description:</label>
+                                <textarea id="pDesc" rows="4" placeholder="მოკლე აღწერა..."></textarea>
+                            </div>
+                            <button class="btn-save" onclick="savePlane()">Save Aircraft</button>
+                        </div>
+                    </div>
+                </div>
+
+
                 <!-- Settings Section -->
                 <section id="settings" class="section">
                     <div class="settings-container">

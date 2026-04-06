@@ -714,3 +714,21 @@ footer h4 a {
     width: 30px;
     height: 30px;
 }
+
+/* log out button */
+
+
+/* Log Out ღილაკის სტილი */
+#logout-btn {
+    color: #ffffff; /* საწყისი ფერი თეთრი */
+}
+
+#logout-btn:hover {
+    color: #ff9d00 !important; /* ჰოვერზე ნარინჯისფერი */
+    filter: drop-shadow(0 0 8px rgba(255, 157, 0, 0.7)); /* ნეონის ეფექტი */
+    transform: scale(1.1); /* ოდნავ გაზრდა */
+}
+
+#logout-btn svg {
+    display: block;
+}

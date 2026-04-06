@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="plane-cards.css">
+    <title>plane cards</title>
+    <link rel="stylesheet" href="favourites.css">
 </head>
 
 <body>
     <header>
-        <a href="it.html"><img src="images-removebg-preview.png" alt="logo"></a>
+        <a href="index.html"><img src="images-removebg-preview.png" alt="logo"></a>
         <div class="header">
-           <nav>
+            <nav>
                 <div id="user-profile">
-                    <a href="loginit.html">
+                    <a href="login.html">
                         <svg fill="#000000" height="200px" width="200px" version="1.1" id="Capa_1"
                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             viewBox="0 0 499.1 499.1" xml:space="preserve">
@@ -76,10 +76,10 @@
             </svg>
         </div>
         <div class="HOME">
-            <a class="A" href="it.html">Home</a>
-            <a class="B" href="downloadit.html">Download</a>
-            <a class="C" href="supportIT.html">Supporto</a>
-            <a class="D" href="plane-cardsIT.html">Carte aereo</a>
+            <a class="A" href="index.html">Home</a>
+            <a class="B" href="download.html">Download</a>
+            <a class="C" href="support.html">Support</a>
+            <a class="D" href="plane-cards.html">Plane Cards</a>
         </div>
         <div class="search_here">
             <div class="filters">
@@ -96,24 +96,32 @@
                     <select id="typeFilter" onchange="filterPlanes()">
                         <option value="all">All Aircraft</option>
                         <option value="Fighter">Fighters</option>
+                        <option value="Striker">Strikers</option>
                         <option value="Helicopter">Helicopters</option>
                         <option value="Transport">Transport</option>
                         <option value="Bomber">Bombers</option>
                     </select>
                 </div>
             </div>
+
         </div>
     </div>
 
+    <section>
+        <div class="PcardsH">
+            <a href="plane-cards.html"> <-- Back to plane cards</a>
+        </div>
 
+        <h1 style="color: rgb(0, 0, 0); text-align: center; padding: 20px;">My Favorites</h1>
 
+        <div id="favorites-container" class="planes-grid"></div>
+    </section>
 
 
 
 
 
     <footer>
-
         <div class="footer2">
             <img src="pic1.png" alt="pic1">
             <img src="pic2.png" alt="pic2">
@@ -127,53 +135,51 @@
         </div>
         <div class="allfooterdivs">
             <div class="footer2div">
-                <h4><a href="#">Prodotti</a></h4>
+                <h4><a href="#">Products</a></h4>
                 <div class="footer2div-as">
                     <a href="#">DCS World</a>
-                    <a href="#">Aerei</a>
-                    <a href="#">Elicotteri</a>
-                    <a href="#">Terreni</a>
-                    <a href="#">Campagne</a>
-                    <a href="#">Altro</a>
+                    <a href="#">Planes</a>
+                    <a href="#">Helicopters</a>
+                    <a href="#">Terrains</a>
+                    <a href="#">Campaigns</a>
+                    <a href="#">Other</a>
                 </div>
             </div>
             <div class="footer2div">
-                <h4><a href="#">Download</a></h4>
+                <h4><a href="#">Downloads</a></h4>
                 <div class="footer2div-as">
                     <a href="#">DCS World</a>
-                    <a href="#">Modelli di texture</a>
-                    <a href="#">Documentazione</a>
-                    <a href="#">Screenshot</a>
-                    <a href="#">File utente</a>
+                    <a href="#">Texture templates</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">Screenshots</a>
+                    <a href="#">User files</a>
                 </div>
             </div>
             <div class="footer2div">
-                <h4><a href="#">Supporto</a></h4>
+                <h4><a href="#">Support</a></h4>
                 <div class="footer2div-as">
-                    <a href="#">Link utili</a>
-                    <a href="#">Contatti per ticket</a>
-                    <a href="#">Domande tecniche</a>
-                    <a href="#">Forum</a>
-                    <a href="#">Terze parti</a>
-                    <a href="#">Linee guida</a>
+                    <a href="#">Useful Links</a>
+                    <a href="#">Tickets Contacts</a>
+                    <a href="#">Technical questions</a>
+                    <a href="#">Forums</a>
+                    <a href="#">Third Party</a>
+                    <a href="#">Guidelines</a>
                 </div>
             </div>
             <div class="footer2div">
-                <h4><a href="#">Legale</a></h4>
+                <h4><a href="#">Legal</a></h4>
                 <div class="footer2div-as">
-                    <a href="#">Informazioni legali</a>
-                    <a href="#">Politica sulla privacy</a>
-                    <a href="#">Termini di servizio UE</a>
-                    <a href="#">Politica sulla privacy e sui cookie</a>
+                    <a href="#">Legal information</a>
+                    <a href="#">Privacy policy</a>
+                    <a href="#">EUTerms of service</a>
+                    <a href="#">Privacy and cookie policy</a>
                 </div>
             </div>
         </div>
-
     </footer>
-
     <script src="auth.js"></script>
 
-    <script src="script.js"></script>
+    <script src="favourites.js"></script>
 </body>
 
 </html>

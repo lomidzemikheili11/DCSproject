@@ -1,4 +1,3 @@
-// Everrest API-ს სწორი მისამართი ავტორიზაციისთვის
 const BASE_URL = "https://api.everrest.educata.dev/auth";
 
 const loginForm = document.querySelector(".login-box");
